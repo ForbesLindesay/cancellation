@@ -1,0 +1,13 @@
+{
+  "name": "cancellation",
+  "repo": "ForbesLindesay/cancellation",
+  "description": "A method for making async operations cancellable",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ]
+}

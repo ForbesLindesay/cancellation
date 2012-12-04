@@ -1,0 +1,23 @@
+{
+  "name": "cancellation",
+  "version": "0.0.1",
+  "description": "A method for making async operations cancellable",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ForbesLindesay/cancellation.git"
+  },
+  "keywords": [
+    "promises",
+    "promises-A",
+    "promises-A-plus",
+    "async",
+    "cancel",
+    "progress"
+  ],
+  "author": "ForbesLindesay",
+  "license": "MIT"
+}
