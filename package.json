@@ -1,6 +1,6 @@
 {
   "name": "cancellation",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A method for making async operations cancellable",
   "main": "index.js",
   "scripts": {

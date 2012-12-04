@@ -2,7 +2,7 @@
   "name": "cancellation",
   "repo": "ForbesLindesay/cancellation",
   "description": "A method for making async operations cancellable",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "keywords": [],
   "dependencies": {},
   "development": {},
