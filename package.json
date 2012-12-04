@@ -19,5 +19,10 @@
     "progress"
   ],
   "author": "ForbesLindesay",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "~1.7.3",
+    "promises-a": "~2.2.1",
+    "better-assert": "~0.1.0"
+  }
 }
