@@ -21,8 +21,9 @@
   "author": "ForbesLindesay",
   "license": "MIT",
   "devDependencies": {
-    "mocha": "~1.7.3",
-    "promises-a": "~2.2.1",
-    "better-assert": "~0.1.0"
+    "mocha": "~1.8",
+    "better-assert": "~1.0",
+    "promise": "~2.0",
+    "mocha-as-promised": "~1.2"
   }
 }
