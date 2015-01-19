@@ -5,7 +5,7 @@
 
 ## Installation
 
-[![component](https://component.jit.su/component-badge.svg)](https://component.jit.su/refer/ForbesLindesay/cancellation)
+Component:
 
     $ component install ForbesLindesay/cancellation
 
