@@ -1,6 +1,8 @@
 
 # cancellation
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ForbesLindesay/cancellation.svg)](https://greenkeeper.io/)
+
   A method for making async operations cancellable
 
 ## Installation
