@@ -15,7 +15,7 @@ function delay2(timeout, cancellationToken) {
   return promise(function (resolve, reject) {
     setTimeout(resolve, timeout);
     setTimeout(function () {
-      if (cancellationToken.isCancelled()) 
+      if (cancellationToken.isCancelled())
         reject(new Error('Operation Cancelled'));
     }, timeout / 4);
   });
