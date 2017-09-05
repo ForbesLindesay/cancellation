@@ -76,6 +76,41 @@ describe('Cancelling with a token', function () {
         clearTimeout(timeout);
       });
   });
+
+  it('does not call an unregistered cancellation listener', function (callback) {
+    var source = tokenSource();
+    var timeout = setTimeout(callback, 100)
+    var listener = function () {
+      callback(new Error('Should not have been called'))
+    }
+    var unregister = source.token.onCancelled(listener)
+    unregister()
+    source.cancel()
+  })
+
+  it('does not call a cancellation listener unregistered between ' +
+      'cancellation and async listener calls', function (callback) {
+    var source = tokenSource();
+    var timeout = setTimeout(callback, 100)
+    var listener = function () {
+      callback(new Error('Should not have been called'))
+    }
+    var unregister = source.token.onCancelled(listener)
+    source.cancel()
+    unregister()
+  })
+
+  it('does not call a cancellation listener registered and unregistered between ' +
+      'cancellation and async listener calls', function (callback) {
+    var source = tokenSource();
+    var timeout = setTimeout(callback, 100)
+    var listener = function () {
+      callback(new Error('Should not have been called'))
+    }
+    source.cancel()
+    var unregister = source.token.onCancelled(listener)
+    unregister()
+  })
 });
 
 describe('Polling for cancellation', function () {
