@@ -1,25 +1,24 @@
 require('mocha-as-promised')();
-var promise = require('promise');
+var Promise = require('promise');
 var tokenSource = require('../');
 var assert = require('better-assert');
 
 function delay(timeout, cancellationToken) {
   cancellationToken = cancellationToken || tokenSource.empty;
-  return promise(function (resolve, reject) {
+  return new Promise(function (resolve, reject) {
     setTimeout(resolve, timeout);
     cancellationToken.onCancelled(reject);
   });
 }
 function delay2(timeout, cancellationToken) {
   cancellationToken = cancellationToken || tokenSource.empty;
-  return promise(function (resolve, reject) {
+  return new Promise(function (resolve, reject) {
     setTimeout(resolve, timeout);
     setTimeout(function () {
       if (cancellationToken.isCancelled())
         reject(new Error('Operation Cancelled'));
     }, timeout / 4);
   });
-  return def.promise;
 }
 function delay3(timeout, cancellationToken) {
   cancellationToken = cancellationToken || tokenSource.empty;
