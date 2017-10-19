@@ -1,4 +1,3 @@
-require('mocha-as-promised')();
 var Promise = require('promise');
 var tokenSource = require('../');
 var assert = require('better-assert');
