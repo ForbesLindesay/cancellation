@@ -1,25 +1,23 @@
-require('mocha-as-promised')();
-var promise = require('promise');
+var Promise = require('promise');
 var tokenSource = require('../');
 var assert = require('better-assert');
 
 function delay(timeout, cancellationToken) {
   cancellationToken = cancellationToken || tokenSource.empty;
-  return promise(function (resolve, reject) {
+  return new Promise(function (resolve, reject) {
     setTimeout(resolve, timeout);
     cancellationToken.onCancelled(reject);
   });
 }
 function delay2(timeout, cancellationToken) {
   cancellationToken = cancellationToken || tokenSource.empty;
-  return promise(function (resolve, reject) {
+  return new Promise(function (resolve, reject) {
     setTimeout(resolve, timeout);
     setTimeout(function () {
-      if (cancellationToken.isCancelled()) 
+      if (cancellationToken.isCancelled())
         reject(new Error('Operation Cancelled'));
     }, timeout / 4);
   });
-  return def.promise;
 }
 function delay3(timeout, cancellationToken) {
   cancellationToken = cancellationToken || tokenSource.empty;
@@ -76,6 +74,41 @@ describe('Cancelling with a token', function () {
         clearTimeout(timeout);
       });
   });
+
+  it('does not call an unregistered cancellation listener', function (callback) {
+    var source = tokenSource();
+    var timeout = setTimeout(callback, 100)
+    var listener = function () {
+      callback(new Error('Should not have been called'))
+    }
+    var unregister = source.token.onCancelled(listener)
+    unregister()
+    source.cancel()
+  })
+
+  it('does not call a cancellation listener unregistered between ' +
+      'cancellation and async listener calls', function (callback) {
+    var source = tokenSource();
+    var timeout = setTimeout(callback, 100)
+    var listener = function () {
+      callback(new Error('Should not have been called'))
+    }
+    var unregister = source.token.onCancelled(listener)
+    source.cancel()
+    unregister()
+  })
+
+  it('does not call a cancellation listener registered and unregistered between ' +
+      'cancellation and async listener calls', function (callback) {
+    var source = tokenSource();
+    var timeout = setTimeout(callback, 100)
+    var listener = function () {
+      callback(new Error('Should not have been called'))
+    }
+    source.cancel()
+    var unregister = source.token.onCancelled(listener)
+    unregister()
+  })
 });
 
 describe('Polling for cancellation', function () {

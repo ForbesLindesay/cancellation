@@ -42,11 +42,21 @@ function token(data) {
   exports.onCancelled = onCancelled;
   function onCancelled(cb) {
     if (isCancelled()) {
-      setTimeout(function () {
+      var listener = function () {
         cb(data.reason);
-      }, 0);
+      }
+      var timeout = setTimeout(listener, 0);
+      return function () {
+        clearTimeout(timeout)
+      }
     } else {
       data.listeners.push(cb);
+      return function () {
+        var index = data.listeners.indexOf(cb)
+        if (index > -1) {
+          data.listeners.splice(index, 1)
+        }
+      }
     }
   }
   return exports;

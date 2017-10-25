@@ -23,7 +23,6 @@
   "devDependencies": {
     "mocha": "~3.2.0",
     "better-assert": "~1.0",
-    "promise": "~7.1.1",
-    "mocha-as-promised": "~2.0.0"
+    "promise": "~7.1.1"
   }
 }
